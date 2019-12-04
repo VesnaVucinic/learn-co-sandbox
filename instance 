@@ -1,0 +1,62 @@
+class Dog
+
+  def bark
+     puts "Woof"
+  end
+end
+
+fido = Dog.new
+fido.bark
+
+snoopy = Dog.new 
+snoopy.bark
+
+class Person
+ def initialize (name)
+  @name = name
+ end
+ 
+ def name
+  @name
+ end
+ 
+ def name=(new_name)
+  @name = new_name
+ end
+
+end
+
+ 
+ kanye = Person.new ("Kanye")
+ kanye.name
+ 
+ kanye.name = "Yeezy"
+ kanye.name
+ 
+ 
+kanye.instance_variable_set(:@name, "Yeezy")
+kanye.instance_variable_get(:@name)
+
+class Person
+
+  def initialize(first_name, last_name)
+    @first_name = first_name
+    @last_name = last_name
+  end
+  
+  def name=(full_name)
+    first_name, last_name = full_name.split
+    @first_name = first_name
+    @last_name = last_name
+  end
+  
+  def name
+     "#{@first_name} #{@last_name}".strip
+  end
+  
+end
+
+
+
+
+ 

@@ -1,0 +1,150 @@
+class Song
+  attr_accessor :artist, :name, :genre
+  
+  #access to a list of all of the songs by all artists, we could just #query that list by asking for all songs that belong to a given #artist.
+  @@all = []
+ 
+  def initialize(name, genre)
+    @name = name
+    @genre = genre
+  end
+  
+  def save
+  @@all << self
+  end
+  
+  def self.all
+  @@all
+  end 
+  
+end
+
+
+class Artist
+  attr_accessor :name
+ 
+  def initialize(name)
+    @name = name
+    =begin
+    "having many" of something means you own a collection of that# thing, way to store collections of data in list form: arrays.
+    artist should start, or be initialized, with a songs collection that is empty
+    =end
+    @song = []
+  end
+  
+  #creating collection
+  def add_song(song)
+    @songs << song
+  end
+  
+  #exposing collection
+  def songs
+    @songs
+    #Telling a song that it belongs to an artist should happen when #that song is added to the artist's @songs collection
+  song.artist = self
+    #we use the self keyword to refer to the artist on which we are #calling this method. 
+    #We call the #artist= method on the song that is being passed in #as an argument and set it equal to self––the artist.
+  end
+  
+end
+
+
+kiki = Song.new("In My Feelings", "hip-hop")
+hotline = Song.new("Hotline Bling", "pop")
+drake = Artist.new("Drake")
+
+kiki.artist = drake
+ 
+kiki.artist.name
+
+drake.add_song("In My Feelings")
+drake.add_song("Hotline Bling")
+drake.songs 
+#can't give genre of song becouse songs are just strings
+
+drake.add_song(kiki)
+drake.add_song(hotline)
+drake.songs
+# =>[#<Song:0x007fa96a878348 @name="In My Feelings", @genre="hip-hop">, #<Song:0x007fa96a122580 @name="Hotline Bling", @genre="pop">]
+# artist has many songs that are real Song instances, not just strings
+
+#ask an individual song for its artist:
+kiki.artist
+# => nil
+#we didn't tell the song that we added to the artist that it belonged to that artist.
+##when we set self in def song in class Artist then we can ask song for Artist
+drake.add_song(kiki)
+kiki.artist.name
+  # => "Drake"
+
+
+#becouse we add @all in Song class we can
+lil_nas_x = Artist.new("Lil Nas X")
+rick = Artist.new("Rick Astley")
+ 
+old_town_road = Song.new("Old Town Road","hip-hop")
+never_gonna_give_you_up = Song.new("Never Gonna Give You Up","pop")
+ 
+old_town_road.artist = lil_nas_x
+never_gonna_give_you_up.artist = rick
+ 
+Song.all.first.name #=> "Old Town Road"
+Song.all.first.genre #=> "hip-hop"
+Song.all.first.artist #=> #<Artist:0x00007ff1d90dbf38 @name="Lil Nas X", @songs=[]>
+Song.all.first.artist.name #=> "Lil Nas X"
+ 
+ 
+Song.all.last.name #=> "Never Gonna Give You Up"
+Song.all.last.genre #=> "pop"
+Song.all.last.artist #=> #<Artist:0x00007ff1d90dbf38 @name="Rick Astley", @songs=[]>Song.all.last.artist.name #=> "Rick Astley"
+Song.all.last.artist.name #=> "Rick Astley"
+
+
+#if we want to find all the songs that belong to a particular artist, #we can just select the appropriate songs
+Song.all.select {|song| song.artist == lil_nas_x}
+#=> [#<Song:0x00007ff1da1d3228 @name="Old Town Road", @genre="hip-hop", @artist=#<Artist:0x00007ff1d90dbf38 @name="Lil Nas X", @songs=[]>>]
+ 
+Song.all.select {|song| song.artist == rick}
+#=> [#<Song:0x00007ff1da87bc38 @name="Never Gonna Give You Up", @genre="pop", @artist=#<Artist:0x00007ff1da20b150 @name="Rick Astley", @songs=[]>>]
+
+#We can incorporate this directly into our Artist class, replacing #the implementation of the #songs method so that it selects instead #of returning the @songs instance variable:
+
+#if we can just get the necessary information selecting from Song.all#, we no longer need the @songs instance variable in our Artist #class. We can also update #add_song accordingly
+
+class Artist
+  attr_accessor :name
+ 
+  def initialize(name)
+    @name = name
+  end
+ 
+  def add_song(song)
+    song.artist = self
+  end
+ 
+  def songs
+    Song.all.select {|song| song.artist == self}
+  end
+end
+
+class Artist
+  ...
+ 
+  def add_song_by_name(name, genre)
+    song = Song.new(name, genre)
+    add_song(song)
+  end
+  
+  class Song
+  ...
+ 
+  def artist_name
+    self.artist.name
+  end
+  
+
+
+
+
+
+
