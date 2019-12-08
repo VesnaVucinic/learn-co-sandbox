@@ -6,7 +6,8 @@ class DogBreeds::CLI
     #Please select the one you want to see breed highlaghts."
     #binding.pry
     get_dog_breeds
-    get_selected_breed
+    list_breeds
+    get_chosen_breed
   end
   
   def get_dog_breeds
@@ -15,7 +16,7 @@ class DogBreeds::CLI
   end
   
   
-  def get_selected_breed
+  def list_breeds
     #list breeds
     @breeds.each.with_index(1) do |breed, index|
       puts "#{index}. #{breed}"
@@ -23,7 +24,17 @@ class DogBreeds::CLI
   end
   
   def get_chosen_breed
-    chosen_breed = gets.strip
+    chosen_breed = gets.strip.to_i 
+    show_breed_highlights_for(chosen_breed) if valid_input(chosen_breed, @breeds)
+    #binding.pry
   end
-    
+  
+  def valid_input(input,data)
+    input.to_i <=data.length && input.to_i > 0 
+  end
+  
+  def show_breed_highlights_for(chosen_breed)
+    breed = @breeds[chosen_breed - 1]
+    puts "Here are the breed_highlights for #{breed}."
+  end
 end
