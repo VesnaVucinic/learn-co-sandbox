@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-require_relative '../lib/breed_highlights'
-
-
-BreedHighlights::CLI.new.call
