@@ -9,6 +9,7 @@ class DogBreeds::Breed
   end
   
   def self.all
+    DogBreeds::Scraper.scrape_breeds if @@all.empty?
     @@all
   end
   

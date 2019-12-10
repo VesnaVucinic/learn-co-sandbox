@@ -5,6 +5,8 @@ require_relative "dog_breeds/scraper"
 
 require 'pry'
 require 'nokogiri'
+require 'open-url'
+
 module DogBreeds
   class Error < StandardError; end
   # Your code goes here...

@@ -10,8 +10,9 @@ class DogBreeds::CLI
   def get_dog_breeds
     #to be scraped
     #@breeds = ["French Buldog", "English Buldog", "Chichuaua"]
-    DogBreeds::Breed.new("shih_tzu")
-    DogBreeds::Breed.new("buldog")
+    #DogBreeds::Breed.new("shih_tzu")
+    #DogBreeds::Breed.new("buldog")
+    
     @breeds = DogBreeds::Breed.all
   end
   
