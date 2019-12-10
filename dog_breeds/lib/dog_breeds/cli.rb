@@ -25,7 +25,7 @@ class DogBreeds::CLI
   
   def get_chosen_breed
     chosen_breed = gets.strip.to_i 
-    show_breed_highlights_for(chosen_breed) if valid_input(chosen_breed, @breeds)
+    show_highlights_for(chosen_breed) if valid_input(chosen_breed, @breeds)
   end
   
   def valid_input(input,data)
@@ -34,6 +34,10 @@ class DogBreeds::CLI
   
   def show_breed_highlights_for(chosen_breed)
     breed = @breeds[chosen_breed - 1]
+    #DogBreeds::Highlights.new('Positive' breed)
+    #DogBreeds::Highlights.new('Negative', breed)
+
+    highlights = breed.highlights
     puts "Here are the breed_highlights for #{breed.name}."
     #binding.pry
   end
