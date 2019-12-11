@@ -15,9 +15,9 @@ class DogBreeds::Breed
     @@all
   end
   
-  def highlights 
+  def get_highlights 
     DogBreeds::Scraper.scrape_higlights(self) if @highlights.empty?
-    highlights
+    #@highlights
   end
   
   def save

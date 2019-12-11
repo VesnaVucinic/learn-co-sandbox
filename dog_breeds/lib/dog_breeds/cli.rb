@@ -38,8 +38,14 @@ class DogBreeds::CLI
     #DogBreeds::Highlights.new('Positive' breed)
     #DogBreeds::Highlights.new('Negative', breed)
 
-    highlights = breed.highlights
+    #highlights = 
+    breed.get_highlights
     puts "Here are the breed_highlights for #{breed.name}."
+    puts lifespan 
+    #puts pedigree_breed
+    puts breed_profile
+    puts dogs_for_sale
+    #puts higlights
     #binding.pry
   end
 end

@@ -1,7 +1,7 @@
 class DogBreeds::Scraper
 
   def self.scrape_breeds
-    doc = Nokogiri::HTML(open("https://www.pets4homes.co.uk/dog-breeds/?sort=mostpopular"))
+    doc = Nokogiri::HTML(open(https://www.pets4homes.co.uk/dog-breeds/))
     
     breeds = doc.css("div.inner-div-search div.breedprofile-card")
       
@@ -15,8 +15,8 @@ class DogBreeds::Scraper
       
   end
   
-  def scrape_highlights
-     doc = Nokogiri::HTML(open("https://www.pets4homes.co.uk/dog-breeds/?sort=mostpopular"))
-     
+  def self.scrape_highlights(breed)
+    doc = Nokogiri::HTML(open("https://www.pets4homes.co.uk/dog-breeds/?sort=mostpopular"))
+  end  
   
 end
