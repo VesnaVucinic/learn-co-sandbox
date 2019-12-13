@@ -1,6 +1,6 @@
 class DogBreeds::Breed 
   attr_accessor :name 
-  attr_writer :breed_profile :@dogs_for_sale 
+  attr_writer :breed_profile :dogs_for_sale 
   
   @@all = []
   
