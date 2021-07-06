@@ -1,13 +1,13 @@
 class DogBreeds::Breed 
   attr_accessor :name 
-  attr_writer :breed_profile :dogs_for_sale 
+  attr_writer :profile, :sale 
   
   @@all = []
   
   def initialize(name)
     @name = name
-    @breed_profile = []
-    @dogs_for_sale = []
+    @profile = []
+    @sale = []
     save
   end
   
@@ -16,9 +16,9 @@ class DogBreeds::Breed
     @@all
   end
   
-  def get_profile 
-    DogBreeds::Scraper.scrape_breed_profile(self) if @breed_profile.empty?
-    DogBreeds::Scraper.scrape_dogs_for_sale(self) if @dogs_for_sale.empty?
+  def get_dog_data 
+    DogBreeds::Scraper.scrape_profile(self) if @profile.empty?
+    DogBreeds::Scraper.scrape_sale(self) if @sale.empty?
   end
   
   def save

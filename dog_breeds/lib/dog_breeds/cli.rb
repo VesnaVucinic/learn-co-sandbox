@@ -35,12 +35,12 @@ class DogBreeds::CLI
   
   def show_profile_for(chosen_breed)
     breed = @breeds[chosen_breed - 1]
-    breed.get_profile
+    breed.get_dog_data
     puts "Here are the breed_highlights for #{breed.name}."
     #puts lifespan 
     #puts pedigree_breed
-    puts breed_profile
-    puts dogs_for_sale
+    puts profile
+    puts sale
     #puts higlights
     #binding.pry
   end
